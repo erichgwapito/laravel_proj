@@ -15,12 +15,16 @@ jobs:
     steps:
       - name: Deploy Code to Production Server
         run: |
-          cd /var/www/inventory_jovanni
+          # Ididirekta sa tamang folder name ng project mo
+          cd /var/www/project-name
+
           git fetch origin
           git reset --hard origin/main
+
           composer install --no-dev --optimize-autoloader --no-interaction
           npm ci
           npm run build
+
           php artisan migrate --force
           php artisan optimize:clear
           php artisan optimize
@@ -34,12 +38,16 @@ jobs:
     steps:
       - name: Deploy Code to Staging Server
         run: |
-          cd /var/www/inventory_jovanni_staging
+          # Ididirekta sa staging folder ng project mo
+          cd /var/www/project-name_staging
+
           git fetch origin
           git reset --hard origin/develop
+
           composer install --no-interaction
           npm ci
           npm run build
+
           php artisan migrate --force
           php artisan optimize:clear
           php artisan optimize
