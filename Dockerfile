@@ -13,6 +13,9 @@ COPY . .
 
 RUN composer install --no-interaction --optimize-autoloader
 RUN sed -i 's/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/' /usr/local/etc/php-fpm.d/www.conf
+RUN echo "opcache.validate_timestamps=0" >> /usr/local/etc/php/conf.d/opcache-custom.ini
+RUN echo "opcache.enable=1" >> /usr/local/etc/php/conf.d/opcache-custom.ini
+RUN echo "opcache.memory_consumption=128" >> /usr/local/etc/php/conf.d/opcache-custom.ini
 
 EXPOSE 9000
 

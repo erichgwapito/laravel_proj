@@ -38,14 +38,14 @@
 </head>
 <body>
 
-    <header style="position:absolute; top:24px; right:32px; z-index:2;">
+    <header style="position:absolute; top:24px; right:32px; z-index:2; display:flex; flex-direction:column; align-items:stretch; gap:10px;">
         @if (Route::has('login'))
             @auth
-                <a href="{{ url('/dashboard') }}" style="padding:8px 18px; text-decoration:none; color:#e8e6e3; font-size:14px;">Dashboard</a>
+                <a href="{{ url('/dashboard') }}" class="btn-outline" style="display:inline-flex; align-items:center; justify-content:center; padding:9px 18px; border:1px solid #3a3a3a; border-radius:6px; text-decoration:none; color:#e8e6e3; font-size:14px; box-sizing:border-box; transition:all 0.2s ease;">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" style="padding:8px 18px; text-decoration:none; color:#e8e6e3; font-size:14px;">Log in</a>
+                <a href="{{ route('login') }}" class="btn-outline" style="display:inline-flex; align-items:center; justify-content:center; padding:9px 18px; border:1px solid #3a3a3a; border-radius:6px; text-decoration:none; color:#e8e6e3; font-size:14px; box-sizing:border-box; transition:all 0.2s ease;">Log in</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="btn-outline" style="padding:8px 18px; border:1px solid #3a3a3a; border-radius:6px; text-decoration:none; color:#e8e6e3; margin-left:8px; font-size:14px; transition:all 0.2s ease;">Register</a>
+                    <a href="{{ route('register') }}" class="btn-outline" style="display:inline-flex; align-items:center; justify-content:center; padding:9px 18px; border:1px solid #3a3a3a; border-radius:6px; text-decoration:none; color:#e8e6e3; font-size:14px; box-sizing:border-box; transition:all 0.2s ease;">Register</a>
                 @endif
             @endauth
         @endif

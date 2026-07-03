@@ -46,7 +46,8 @@
     <div class="card">
         <a href="{{ url('/') }}" class="back">← Back to Home</a>
         <h1>Create an account</h1>
-        <form onsubmit="event.preventDefault(); alert('Demo only — no backend auth yet.');">
+        <form method="POST" action="{{ url('/register') }}">
+            @csrf
             <label>Name</label>
             <input type="text" placeholder="Juan Dela Cruz">
             <label>Email address</label>

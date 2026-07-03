@@ -46,7 +46,8 @@
     <div class="card">
         <a href="{{ url('/') }}" class="back">← Back to Home</a>
         <h1>Log in to your account</h1>
-        <form onsubmit="event.preventDefault(); alert('Demo only — no backend auth yet.');">
+        <form method="POST" action="{{ url('/login') }}">
+    @csrf
             <label>Email address</label>
             <input type="email" placeholder="you@example.com">
             <label>Password</label>
