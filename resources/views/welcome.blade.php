@@ -9,7 +9,7 @@
             0%, 100% { box-shadow: 0 0 20px rgba(255,111,0,0.3); }
             50% { box-shadow: 0 0 35px rgba(255,111,0,0.55); }
         }
-        body {
+       body {
             margin: 0;
             font-family: 'Consolas', 'Courier New', ui-sans-serif, monospace;
             background: radial-gradient(circle at top right, #1a1108 0%, #0a0a0a 60%);
@@ -19,7 +19,8 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            box-sizing: border-box;
+            padding-bottom: 90px;
         }
         body::before {
             content: "";
@@ -70,6 +71,9 @@
                 <li class="link-item" style="padding:12px 0; border-bottom:1px solid #262626;">
                     <a href="{{ url('/counter') }}" style="color:#FF6F00; text-decoration:none; font-weight:500; font-size:14px;">→ View Interactive Counter (Livewire Demo)</a>
                 </li>
+                <li class="link-item" style="padding:12px 0; border-bottom:1px solid #262626;">
+                    <a href="{{ url('/todos') }}" style="color:#FF6F00; text-decoration:none; font-weight:500; font-size:14px;">→ View To-Do List (Livewire Demo)</a>
+                </li>
             </ul>
 
             <a href="{{ url('/counter') }}" style="display:inline-block; padding:12px 28px; background:#FF6F00; color:#0a0a0a; text-decoration:none; border-radius:6px; font-weight:700; font-size:14px; letter-spacing:0.5px;">TRY THE DEMO →</a>
@@ -80,6 +84,29 @@
         </div>
 
     </main>
+
+@if (session('demo_logged_in'))
+        <div x-data="{ open: false }" style="position:fixed; bottom:16px; left:16px; z-index:10; font-family:'Consolas','Courier New',ui-sans-serif,monospace;">
+
+
+            <div @click="open = !open" style="display:flex; align-items:center; gap:8px; background:#141414; border:1px solid #2a2a2a; border-radius:8px; padding:6px 10px; box-shadow:0 4px 16px rgba(0,0,0,0.4); cursor:pointer; width:200px; box-sizing:border-box;">
+                <div style="width:24px; height:24px; border-radius:50%; background:#FF6F00; color:#0a0a0a; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:11px; flex-shrink:0;">
+                    E
+                </div>
+                <div style="flex:1; min-width:0;">
+                    <div style="color:#e8e6e3; font-size:11px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.2;">Erich</div>
+                    <div style="color:#8a8a8a; font-size:9px; line-height:1.2;">Free plan</div>
+                </div>
+                <div style="color:#8a8a8a; font-size:10px; flex-shrink:0;" x-text="open ? '⌃' : '⌄'"></div>
+            </div>
+
+            <div x-show="open" @click.outside="open = false" x-cloak style="margin-top:6px; width:200px; background:#141414; border:1px solid #2a2a2a; border-radius:8px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.4);">
+                <a href="{{ url('/logout') }}" style="display:block; padding:8px 12px; color:#e8e6e3; text-decoration:none; font-size:11px; border-bottom:1px solid #262626;">Sign out</a>
+                <a href="{{ url('/login') }}" style="display:block; padding:8px 12px; color:#8a8a8a; text-decoration:none; font-size:11px;">Switch account</a>
+            </div>
+
+        </div>
+    @endif
 
     @livewireScripts
 </body>

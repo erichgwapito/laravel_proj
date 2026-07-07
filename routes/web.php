@@ -12,7 +12,7 @@ Route::get('/login', function () {
 
 Route::post('/login', function () {
     session(['demo_logged_in' => true]);
-    return redirect('/counter');
+    return redirect('/');
 });
 
 Route::get('/register', function () {
@@ -21,7 +21,13 @@ Route::get('/register', function () {
 
 Route::post('/register', function () {
     session(['demo_logged_in' => true]);
-    return redirect('/counter');
+    return redirect('/');
 });
 
+Route::get('/logout', function () {
+    session()->forget('demo_logged_in');
+    return redirect('/');
+});
+
+Route::livewire('/todos', 'pages::todos');
 Route::livewire('/counter', 'pages::counter');
